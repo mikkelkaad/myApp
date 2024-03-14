@@ -9,6 +9,7 @@ const cors = require("cors");
 // const db = require("./models");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+const authRouter = require("./routes/auth");
 
 // db.sequelize.sync({ force: false });
 const app = express();
@@ -26,6 +27,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/user", userRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

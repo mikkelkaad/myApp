@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./database");
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -6,12 +7,10 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 
-// const db = require("./models");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
 
-// db.sequelize.sync({ force: false });
 const app = express();
 
 // view engine setup

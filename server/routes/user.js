@@ -1,9 +1,17 @@
 const router = require("express").Router();
 const jsonParser = require("body-parser").json();
+const db = require("../models");
+const userService = require("../services/Factory").user(db);
 
 //return logged in user's info
 router.get("/", async (req, res, next) => {
-  return res.end();
+  let id = 1;
+  const user = await userService.getOne(id);
+  return res.json({
+    status: "success",
+    statuscode: 200,
+    data: { result: "user info found", user: user },
+  });
 });
 
 //return all users' info

@@ -4,12 +4,13 @@ const getData = async (url) => {
   const text = await data.text();
   return text;
 };
-const login = async()=>{
+const signup = async()=>{
   const user = {
     username:document.querySelector('#inputUsername').value,
-    password:document.querySelector('#inputPassword').value
+    password:document.querySelector('#inputPassword').value,
+    email:document.querySelector('#inputEmail').value,
   };
- const request =  await fetch('http://localhost:8080/auth/login',
+ const request =  await fetch('http://localhost:8080/auth/signup',
   {method:"POST",
   headers: {
     "Content-Type": "application/json",
@@ -20,17 +21,18 @@ const login = async()=>{
   alert(response.statuscode + '\n' + response.data.result);
 }
 const text = await getData("http://localhost:8080/");
-function App() {
+function Signup() {
   return (
     <div className="App">
         <h1>
           <code>{text}</code>
         </h1>      
+          <input id="inputEmail" name="email" placeholder="email..."></input>
           <input id="inputUsername" name="username" placeholder="username..."></input>
           <input id="inputPassword" name="password" placeholder="password..."></input>
-          <button type="button" onClick={login}>login</button>
+          <button type="button" onClick={signup}>Signup</button>
     </div>
   );
 }
 
-export default App;
+export default Signup;

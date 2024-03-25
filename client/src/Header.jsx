@@ -5,7 +5,7 @@ function Header(){
         <header className="header">
             <nav>
                 <ul>
-                    <li><a href="#">HOME</a></li>
+                    <li><a href="/">HOME</a></li>
                     <li><a href="#">My page</a></li>
                     <li><a href="#">ITEM 1</a></li>
                     <li><a href="#">ITEM 2</a></li>

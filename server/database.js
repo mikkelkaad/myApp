@@ -1,6 +1,6 @@
 const db = require("./models").sequelize;
-const usersService = require("./services/Factory").user(db);
-const roleSerivce = require("./services/Factory").role(db);
+const usersService = require("./services/Factory").user();
+const roleSerivce = require("./services/Factory").role();
 (async () => {
   await db.sync({ force: true });
   await roleSerivce.create("Admin");

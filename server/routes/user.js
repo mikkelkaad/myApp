@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const jsonParser = require("body-parser").json();
-const db = require("../models");
-const userService = require("../services/Factory").user(db);
+const userService = require("../services/Factory").user();
 
 //return logged in user's info
 router.get("/", async (req, res, next) => {

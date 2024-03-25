@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const jsonParser = require("body-parser").json();
-const db = require("../models");
 const userService = require("../services/Factory").user();
 
 router.post("/login", jsonParser, async (req, res, next) => {

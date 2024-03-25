@@ -6,8 +6,19 @@ class UserService {
     this.User = db.User;
   }
 
-  async getOne(id) {
-    return this.User.findOne({ where: { id: id, deleted: 0 }, raw: true });
+  async getOne(input) {
+    let user;
+    user = this.User.findOne({
+      where: { email: input, deleted: 0 },
+      raw: true,
+    });
+    if (!user) {
+      user = this.User.findOne({
+        where: { username: input, deleted: 0 },
+        raw: true,
+      });
+    }
+    return user;
   }
 
   async create(username, email, password, roleId = 2) {

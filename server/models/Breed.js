@@ -14,6 +14,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Breed.associate = (models) => {
     Breed.hasMany(models.Pet);
+    Breed.belongsTo(models.Species, { foreignKey: { allowNull: false } })
     Breed.belongsTo(models.Size, { foreignKey: { allowNull: false } });
   };
   return Breed;

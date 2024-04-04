@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
   });
 
   Species.associate = (models) => {
-    Species.hasMany(models.Pet);
+    Species.hasMany(models.Breed);
   };
   return Species;
 };

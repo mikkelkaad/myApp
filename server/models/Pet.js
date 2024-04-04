@@ -17,7 +17,6 @@ module.exports = (sequelize, Sequelize) => {
   });
   Pet.associate = (models) => {
     Pet.belongsTo(models.User, { foreignKey: { allowNull: false } });
-    Pet.belongsTo(models.Species, { foreignKey: { allowNull: false } });
     Pet.belongsTo(models.Breed, { foreignKey: { allowNull: false } });
     Pet.belongsToMany(models.Allergy, { through: "PetAllergies" });
   };

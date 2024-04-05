@@ -1,4 +1,4 @@
-const userService = require("./UserService");
+const UserService = require("./UserService");
 const roleSerivce = require("./RoleService");
 const allergySerivce = require("./AllergyService");
 const breedSerivce = require("./BreedService");
@@ -7,12 +7,11 @@ const speciesSerivce = require("./SpeciesService");
 const brandSerivce = require("./BrandService");
 const foodSerivce = require("./FoodService");
 const ingredientSerivce = require("./IngredientService");
-
 const petSerivce = require("./PetService");
 
 const Factory = {
   user: (db) => {
-    return new userService(db);
+    return new UserService(db);
   },
   role: (db) => {
     return new roleSerivce(db);

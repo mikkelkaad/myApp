@@ -10,14 +10,23 @@ const brandSerivce = service.brand(db);
 const foodSerivce = service.food(db);
 const ingredientSerivce = service.ingredient(db);
 
+const fs = require("fs");
+const path = require("path");
+const rawData = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname + "/rawdata/JSONdata.json"))
+);
+const { roles, sizes, species, allergies } = rawData;
+
 // Might not need - might want test pets
 const petSerivce = service.pet(db);
 
 (async () => {
   await db.sequelize.sync({ force: true });
 
-  await roleSerivce.create("Admin");
-  await roleSerivce.create("User");
+  for (i = 0; i < roles.length; i++) {
+    await roleSerivce.create(roles[i]);
+  }
+
   await usersService.create(
     process.env.ADMIN_USERNAME,
     process.env.ADMIN_EMAIL,
@@ -25,22 +34,15 @@ const petSerivce = service.pet(db);
     1
   );
 
-  await speciesSerivce.create("Cat");
-  await speciesSerivce.create("Dog");
+  for (i = 0; i < species.length; i++) {
+    await speciesSerivce.create(species[i]);
+  }
 
-  await sizeSerivce.create("Small");
-  await sizeSerivce.create("Medium");
-  await sizeSerivce.create("Large");
+  for (i = 0; i < sizes.length; i++) {
+    await sizeSerivce.create(sizes[i]);
+  }
 
-  await allergySerivce.create("Beef");
-  await allergySerivce.create("Dairy");
-  await allergySerivce.create("Chicken");
-  await allergySerivce.create("Wheat");
-  await allergySerivce.create("Lamb");
-  await allergySerivce.create("Soy");
-  await allergySerivce.create("Corn");
-  await allergySerivce.create("Egg");
-  await allergySerivce.create("Pork");
-  await allergySerivce.create("Fish");
-  await allergySerivce.create("Rice");
+  for (i = 0; i < allergies.length; i++) {
+    await allergySerivce.create(allergies[i]);
+  }
 })();

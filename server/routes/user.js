@@ -5,8 +5,8 @@ const userService = require("../services/Factory").user(db);
 
 //return logged in user's info
 router.get("/", async (req, res, next) => {
-  let id = 1;
-  const user = await userService.getOne(id);
+  let email = "admin@thisapp.com";
+  const user = await userService.getOne(email);
   return res.json({
     status: "success",
     statuscode: 200,

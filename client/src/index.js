@@ -2,18 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import Header from "./Header";
 import App from "./App";
-import Signup from "./Signup";
-import MyPage from "./MyPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Header />
-    {/* <App /> */}
-    {/* <Signup /> */}
-    <MyPage />
+    <App />
   </React.StrictMode>
 );
 

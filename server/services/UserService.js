@@ -6,15 +6,15 @@ class UserService {
     this.User = db.User;
   }
 
-  async getOne(input) {
+  async getOne(email) {
     let user;
-    user = this.User.findOne({
-      where: { email: input, deleted: 0 },
+    user = await this.User.findOne({
+      where: { email: email, deleted: 0 },
       raw: true,
     });
     if (!user) {
-      user = this.User.findOne({
-        where: { username: input, deleted: 0 },
+      user = await this.User.findOne({
+        where: { username: email, deleted: 0 },
         raw: true,
       });
     }
@@ -32,6 +32,22 @@ class UserService {
         salt: salt,
         RoleId: roleId,
       });
+    });
+  }
+
+  async validate(userPass, db) {
+    return new Promise((res, rej) => {
+      crypto.pbkdf2(
+        userPass,
+        String(db.salt),
+        42069,
+        64,
+        "sha256",
+        (err, hash) => {
+          if (err) return rej(err);
+          return res(crypto.timingSafeEqual(db.password, hash));
+        }
+      );
     });
   }
 }

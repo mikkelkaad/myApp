@@ -10,15 +10,15 @@ const brandSerivce = service.brand(db);
 const foodSerivce = service.food(db);
 const ingredientSerivce = service.ingredient(db);
 
+// Might not need - might want test pets
+const petSerivce = service.pet(db);
+
 const fs = require("fs");
 const path = require("path");
 const rawData = JSON.parse(
   fs.readFileSync(path.resolve(__dirname + "/rawdata/JSONdata.json"))
 );
 const { roles, sizes, species, allergies } = rawData;
-
-// Might not need - might want test pets
-const petSerivce = service.pet(db);
 
 (async () => {
   await db.sequelize.sync({ force: true });

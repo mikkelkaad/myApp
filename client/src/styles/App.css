@@ -2,3 +2,23 @@
   text-align: center;
 }
 
+input {
+  padding: 12px 20px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  border: none;
+  width: 200px;
+}
+
+button {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: coral;
+  border: none;
+}
+
+button:hover {
+  background-color: rgb(255, 68, 0);
+}
+

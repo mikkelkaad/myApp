@@ -1,4 +1,5 @@
-import "./styles/App.css";
+import "../styles/App.css";
+import Header from "../components/Header";
 
 const getData = async (url) => {
     const data = await fetch(url);
@@ -7,8 +8,10 @@ const getData = async (url) => {
   };
 const raw = await getData('http://localhost:8080/user');
 const user = raw.data.user;
-function MyPage() {
+export function MyPage() {
     return (
+      <>
+      <Header />
       <div className="App">
           <h1>
             <code>My Page</code>
@@ -17,7 +20,8 @@ function MyPage() {
         <p>Email: {user.email}</p>
         <p>Password: *****</p>
       </div>
+      </>
     );
   }
   
-  export default MyPage;
+  // export default MyPage;

@@ -8,16 +8,24 @@ const login = async()=>{
     username:document.querySelector('#loginUsername').value,
     password:document.querySelector('#loginPassword').value
   };
+  try{
  const request =  await fetch('http://localhost:8080/auth/login',
   {method:"POST",
   headers: {
     "Content-Type": "application/json",
   },
+  credentials:"include",
   body:JSON.stringify(user)});
   const response = await request.json();
   console.log(response);
   alert(response.statuscode + '\n' + response.data.result);
+  window.location.reload();
+}catch(error){
+  alert(error);
 }
+}
+
+
 const text = "Login"
 export const Login = () => {
   return (

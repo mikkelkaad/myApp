@@ -35,7 +35,6 @@ const auth = {
         },
       });
     }
-    //if user is admin
     next();
   },
   isUser: (req, res, next) => {

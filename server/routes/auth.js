@@ -5,8 +5,8 @@ const userService = require("../services/Factory").user(db);
 const jwt = require("jsonwebtoken");
 
 router.post("/login", jsonParser, async (req, res, next) => {
-  const { username, password } = req.body;
-  if (username.length == 0 || password.length == 0) {
+  const { username, password, email } = req.body;
+  if ((!username && !email) || !password) {
     return res.json({
       statuscode: 400,
       status: "fail",
@@ -15,7 +15,10 @@ router.post("/login", jsonParser, async (req, res, next) => {
       },
     });
   }
-  const user = await userService.getOne(username);
+
+  const user = email
+    ? await userService.getOne(email)
+    : await userService.getOne(username);
   if (!user) {
     return res.json({
       status: "fail",
@@ -58,7 +61,7 @@ router.post("/login", jsonParser, async (req, res, next) => {
 
 router.post("/signup", jsonParser, async (req, res, next) => {
   const { username, password, email } = req.body;
-  if (username.length == 0 || password.length == 0 || email.length == 0) {
+  if (!username || !password || !email) {
     return res.json({
       statuscode: 400,
       status: "fail",

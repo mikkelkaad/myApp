@@ -7,8 +7,11 @@
     filter: grayscale(70%);
     object-fit: cover;
     overflow: hidden;
+
+    transition: all 0.5s linear;
 }
 
 .card:hover{
     filter: grayscale(0%);
+    margin: 25px;
 }

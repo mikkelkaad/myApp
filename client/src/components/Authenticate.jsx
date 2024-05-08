@@ -21,7 +21,8 @@ const signup = async()=>{
     title:response.status,
     text:response.data.result,
     icon:icon,
-    showConfirmButton:false
+    showConfirmButton:false,
+    timer:1000
   }).then(()=>{
     window.location.reload();
   });
@@ -51,9 +52,10 @@ const login = async()=>{
     title:response.status,
     text:response.data.result,
     icon:icon,
-    showConfirmButton:false
+    showConfirmButton:false,
+    timer:1000
   }).then(()=>{
-    window.location.reload();
+    window.location.href = response.statuscode === 200 ? "." : "./#/login"
   });
 
 }

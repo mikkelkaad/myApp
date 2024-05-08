@@ -5,7 +5,7 @@ import {Home} from '../components/Home';
 export const HomePage = (props)=>{
     return(
     <>
-        <Header user={props.user}/>
+        <Header user={props.user} active="home"/>
         <Home user={props.user}/>
     </>
     )

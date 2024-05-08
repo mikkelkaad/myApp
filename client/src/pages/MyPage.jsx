@@ -5,7 +5,7 @@ import { MyPage } from "../components/MyPage";
 export function MyPagePage(props) {
     return (
       <>
-      <Header user={props.user}/>
+      <Header user={props.user} active="mypage" />
       <MyPage user={props.user}/>
       </>
     );

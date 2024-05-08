@@ -5,7 +5,7 @@ import { Authenticate } from "../components/Authenticate";
 export const AuthenticatePage = (props) => {
   return (
     <>
-    <Header user={props.user}/>
+    <Header user={props.user} active="login" />
     <Authenticate />
     </>
   );

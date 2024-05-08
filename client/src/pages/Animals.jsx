@@ -5,7 +5,7 @@ import { Animals } from '../components/Animals';
 export const AnimalsPage = (props)=>{
     return (
         <>
-        <Header user={props.user}/>
+        <Header user={props.user} active="animals" />
         <Animals user={props.user}/>
         </>
     )

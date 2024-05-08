@@ -13,24 +13,22 @@ const func = async (species, username)=>{
     pet.user = username;
     BreedsModal.show("#dog");
      
-    pet.name = prompt('What name?');
-    pet.birthday = prompt('What birthday?');
-    pet.weight = prompt('How much weight?');
+    // pet.name = prompt('What name?');
+    // pet.birthday = prompt('What birthday?');
+    // pet.weight = prompt('How much weight?');
     
     console.log(pet)
-    Swal.fire({title:"Your pet"});
+    Swal.fire({icon:"success",
+        showConfirmButton:false,
+        timer:1000
+    });
 };
 
 export const Animals = (props)=>{
     return(
     <div className="App">
+
         <BreedsModal breeds={breeds} modalId="dog"/>
-
-        
-        <button onClick={()=>{
-            BreedsModal.show("#dog")
-            }}>test modal display</button>
-
 
     <h1><code>Register a new Pet?</code></h1>
     <Card cardAlt="Picture of a cat" cardUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"/>

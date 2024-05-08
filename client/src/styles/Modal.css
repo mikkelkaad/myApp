@@ -1,0 +1,16 @@
+.modal {
+    display:none;
+    position: fixed;
+    transform: translate(-50%,-50%);
+    left:50%;
+    top:50%;
+    z-index: 10;
+    background-color:rgb(254, 152, 115);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    border: 3px black solid;
+    border-radius: 10px;
+
+    box-shadow: 0 0 0 999999px rgba(0, 0, 0, 0.5);
+}

@@ -18,7 +18,8 @@ const path = require("path");
 const rawData = JSON.parse(
   fs.readFileSync(path.resolve(__dirname + "/rawdata/JSONdata.json"))
 );
-const { roles, sizes, species, allergies } = rawData;
+const { roles, sizes, species, allergies, breeds } = rawData;
+const { dogs } = breeds;
 
 (async () => {
   await db.sequelize.sync({ force: true });
@@ -40,6 +41,18 @@ const { roles, sizes, species, allergies } = rawData;
 
   for (i = 0; i < sizes.length; i++) {
     await sizeSerivce.create(sizes[i]);
+  }
+
+  let { small, medium, large } = dogs;
+
+  for (i = 0; i < small.length; i++) {
+    await breedSerivce.create(small[i].breed, 1, 2);
+  }
+  for (i = 0; i < medium.length; i++) {
+    await breedSerivce.create(medium[i].breed, 2, 2);
+  }
+  for (i = 0; i < large.length; i++) {
+    await breedSerivce.create(large[i].breed, 3, 2);
   }
 
   for (i = 0; i < allergies.length; i++) {

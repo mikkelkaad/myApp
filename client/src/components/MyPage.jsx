@@ -3,7 +3,7 @@ export const MyPage = (props)=>{
 <>
     <div className="App">
     <h1>
-    <code>My Page</code>
+    <code>{props.user.username}</code>
     </h1> 
     {props.user ? 
     <>     

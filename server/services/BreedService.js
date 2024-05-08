@@ -4,6 +4,10 @@ class BreedService {
     this.Breed = db.Breed;
   }
 
+  async getAll() {
+    return this.Breed.findAll({});
+  }
+
   async create(breed, SizeId, SpeciesId) {
     return this.Breed.create({
       breed: breed,

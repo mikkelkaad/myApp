@@ -1,16 +1,13 @@
 import './styles/App.css';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
+import {getJson} from './components/getJson';
 import { AuthenticatePage } from './pages/Authenticate';
 import {MyPagePage} from './pages/MyPage';
 import { HomePage } from './pages/Home';
 import { AnimalsPage } from './pages/Animals';
 
-const getData = async (url) => {
-  const data = await fetch(url, {credentials:"include"});
-  const json = await data.json();
-  return json;
-};
-const raw = await getData('http://localhost:8080/user');
+
+const raw = await getJson('http://localhost:8080/user');
 let user = raw.statuscode === 200 ? raw.data.user : null;
 
 function App(){

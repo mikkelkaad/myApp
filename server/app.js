@@ -10,6 +10,7 @@ const cors = require("cors");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
+const breedsRouter = require("./routes/breeds");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
+app.use("/breeds", breedsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -8,6 +8,10 @@ class BreedService {
     return this.Breed.findAll({});
   }
 
+  async getOne(breed) {
+    return this.Breed.findOne({ where: { breed: breed } });
+  }
+
   async create(breed, SizeId, SpeciesId) {
     return this.Breed.create({
       breed: breed,

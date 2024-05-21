@@ -13,7 +13,7 @@ const validateInput = (name,weight,birthday)=>{
 }
 
 
-const breedPicker = (props,i)=>{
+const breedPicker = async (props,i)=>{
     props.pet.breed = props.breeds[i].breed;
     Swal.fire({
         title:"We just need a bit more info about your pet:",
@@ -22,23 +22,44 @@ const breedPicker = (props,i)=>{
         html:`
         <input placeholder="Name" id="petName"  />
         <input placeholder="Weight"id="petWeight" />
-        <input placeholder="Birthday" id="petBirtday" type="date"  />
+        <input placeholder="Birthday" id="petBirthday" type="date"  />
         `,
         preConfirm:async()=>{
             return validateInput(
             document.getElementById('petName').value,
             document.getElementById('petWeight').value,
-            document.getElementById('petBirtday').value   
+            document.getElementById('petBirthday').value   
         )
         }
-    }).then((result)=>{
+    }).then(async (result)=>{
         if(!result.isConfirmed)return;
         props.pet.name = document.getElementById('petName').value;
         props.pet.weight = document.getElementById('petWeight').value;
-        props.pet.birtday = document.getElementById('petBirtday').value;
+        props.pet.birthday = document.getElementById('petBirthday').value;
         
         
         console.log(props.pet);
+
+        const request =  await fetch('http://localhost:8080/pets',
+        {method:"POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify(props.pet)});
+        const response = await request.json();
+        let icon = "success";
+        if (response.statuscode !== 200){
+          icon = "error"
+        }
+        Swal.fire({
+          title:response.status,
+          text:response.data.result,
+          icon:icon,
+          showConfirmButton:false,
+          timer:1000
+        }).then(()=>{
+          window.location.reload();
+        });
     })
 }
 

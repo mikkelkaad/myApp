@@ -64,13 +64,18 @@ const breedPicker = async (props,i)=>{
 }
 
 export const BreedsModal = (props)=>{
-    let list = [];
-    for(let i=0;i<props.breeds.length;i++){
-        list.push(<><Card cardUrl={placeholder} cardAlt={props.breeds[i].breed} key={props.breeds[i].id} func={()=>{breedPicker(props,i)}} /></>);
-    }
+    let list = props.breeds;
+    // for(let i=0;i<props.breeds.length;i++){
+    //     list.push(<><Card cardUrl={placeholder} cardAlt={props.breeds[i].breed} func={()=>{breedPicker(props,i)}} /></>);
+    // }
+
     return(
         <div id ={props.modalId} className="modal">
-            {list}
+            {    list.map((breed,i)=>{
+        return(
+            <Card key={i} cardUrl={placeholder} cardAlt={breed.breed} func={()=>{breedPicker(props,i)}} /> 
+        )
+    })}
         </div>
     )
 }

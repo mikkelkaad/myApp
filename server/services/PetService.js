@@ -21,6 +21,14 @@ class PetService {
       AllergyId: AllergyId,
     });
   }
+
+  async getAll() {
+    return this.Pet.findAll({ where: {} });
+  }
+
+  async getMyPets(userId) {
+    return this.Pet.findAll({ where: { UserId: userId } });
+  }
 }
 
 module.exports = PetService;

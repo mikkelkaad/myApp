@@ -6,7 +6,8 @@ export const AnimalsPage = (props)=>{
     return (
         <>
         <Header user={props.user} active="animals" />
-        <Animals user={props.user}/>
+        {props.user ? <Animals user={props.user} /> : <></>}
+        
         </>
     )
 }

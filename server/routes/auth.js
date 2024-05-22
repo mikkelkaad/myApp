@@ -44,7 +44,7 @@ router.post("/login", jsonParser, async (req, res, next) => {
       username: user.username,
       role: user.RoleId,
     },
-    process.env.JWT_SECRET,
+    process.env.TOKEN_SECRET,
     {
       expiresIn: "2h",
     }

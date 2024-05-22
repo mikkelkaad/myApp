@@ -32,7 +32,7 @@ router.get("/", async (req, res, next) => {
     });
   }
   try {
-    decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
   } catch (error) {
     return res.json({
       statuscode: 401,

@@ -5,6 +5,7 @@ import { AuthenticatePage } from './pages/Authenticate';
 import {MyPagePage} from './pages/MyPage';
 import { HomePage } from './pages/Home';
 import { AnimalsPage } from './pages/Animals';
+import {AdminPage} from "./pages/Admin";
 
 
 const raw = await getJson('http://localhost:8080/user');
@@ -19,6 +20,8 @@ return(
       <Route path='/login' element={<AuthenticatePage user={user} />}/>
       <Route path='/mypage' element={<MyPagePage  user={user} />}/>
       <Route path='/animals' element={<AnimalsPage user={user} />}/>
+      <Route path='/admin' element={<AdminPage user={user} />}/>
+      
     </Routes>
 
   </Router>

@@ -22,7 +22,7 @@ const { roles, sizes, species, allergies, breeds } = rawData;
 const { dogs } = breeds;
 
 (async () => {
-  await db.sequelize.sync({ force: true });
+  await db.sequelize.sync({ force: false });
 
   for (i = 0; i < roles.length; i++) {
     await roleSerivce.create(roles[i]);

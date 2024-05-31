@@ -10,7 +10,9 @@ export const Header = (props)=>{
                     
                     {
                     props.user 
-                    ? <><a href="/#/mypage" id="nav-mypage" className={props.active === "mypage" ? "active" : "" }>PROFILE</a><a href="/#/animals" id="nav-animals" className={props.active === "animals" ? "active" : "" }>PETS</a></> 
+                    ? <><a href="/#/mypage" id="nav-mypage" className={props.active === "mypage" ? "active" : "" }>PROFILE</a><a href="/#/animals" id="nav-animals" className={props.active === "animals" ? "active" : "" }>PETS</a>
+                    {props.user.role === "Admin" ? <a href='/#/admin' id="admin-page" className={props.active === "admin" ? "active" : ""} >ADMIN</a> : ""} 
+                    </>
                     : <a href="/#/login" id="nav-login" className={props.active === "login" ? "active" : "" }>LOGIN</a>
                     }
 

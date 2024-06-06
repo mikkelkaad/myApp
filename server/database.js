@@ -23,39 +23,42 @@ const { dogs } = breeds;
 
 (async () => {
   await db.sequelize.sync({ force: false });
+  try {
+    for (i = 0; i < roles.length; i++) {
+      await roleSerivce.create(roles[i]);
+    }
 
-  for (i = 0; i < roles.length; i++) {
-    await roleSerivce.create(roles[i]);
-  }
+    await usersService.create(
+      process.env.ADMIN_USERNAME,
+      process.env.ADMIN_EMAIL,
+      process.env.ADMIN_PASSWORD,
+      1
+    );
 
-  await usersService.create(
-    process.env.ADMIN_USERNAME,
-    process.env.ADMIN_EMAIL,
-    process.env.ADMIN_PASSWORD,
-    1
-  );
+    for (i = 0; i < species.length; i++) {
+      await speciesSerivce.create(species[i]);
+    }
 
-  for (i = 0; i < species.length; i++) {
-    await speciesSerivce.create(species[i]);
-  }
+    for (i = 0; i < sizes.length; i++) {
+      await sizeSerivce.create(sizes[i]);
+    }
 
-  for (i = 0; i < sizes.length; i++) {
-    await sizeSerivce.create(sizes[i]);
-  }
+    let { small, medium, large } = dogs;
 
-  let { small, medium, large } = dogs;
+    for (i = 0; i < small.length; i++) {
+      await breedSerivce.create(small[i].breed, 1, 2);
+    }
+    for (i = 0; i < medium.length; i++) {
+      await breedSerivce.create(medium[i].breed, 2, 2);
+    }
+    for (i = 0; i < large.length; i++) {
+      await breedSerivce.create(large[i].breed, 3, 2);
+    }
 
-  for (i = 0; i < small.length; i++) {
-    await breedSerivce.create(small[i].breed, 1, 2);
-  }
-  for (i = 0; i < medium.length; i++) {
-    await breedSerivce.create(medium[i].breed, 2, 2);
-  }
-  for (i = 0; i < large.length; i++) {
-    await breedSerivce.create(large[i].breed, 3, 2);
-  }
-
-  for (i = 0; i < allergies.length; i++) {
-    await allergySerivce.create(allergies[i]);
+    for (i = 0; i < allergies.length; i++) {
+      await allergySerivce.create(allergies[i]);
+    }
+  } catch (err) {
+    console.log(err);
   }
 })();

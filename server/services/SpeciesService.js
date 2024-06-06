@@ -4,6 +4,10 @@ class SpeciesService {
     this.Species = db.Species;
   }
 
+  async getAll() {
+    return this.Species.findAll({});
+  }
+
   async create(species) {
     return this.Species.create({
       species: species,

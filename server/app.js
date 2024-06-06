@@ -12,6 +12,8 @@ const userRouter = require("./routes/user");
 const authRouter = require("./routes/auth");
 const breedsRouter = require("./routes/breeds");
 const petsRouter = require("./routes/pets");
+const speciesRouter = require("./routes/species");
+const sizesRouter = require("./routes/sizes");
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/breeds", breedsRouter);
 app.use("/pets", petsRouter);
+app.use("/sizes", sizesRouter);
+app.use("/species", speciesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,3 +1,5 @@
+const { QueryTypes } = require("sequelize");
+
 class PetService {
   constructor(db) {
     this.client = db.sequelize;
@@ -27,7 +29,17 @@ class PetService {
   }
 
   async getMyPets(userId) {
-    return this.Pet.findAll({ where: { UserId: userId } });
+    const result = this.client.query(
+      `
+      SELECT name, weight, breeds.breed, species.species
+      FROM pets
+      JOIN breeds ON pets.BreedId = breeds.id
+      JOIN species ON breeds.SpeciesId = species.id
+      WHERE UserId = ${userId}
+      `,
+      { raw: true, type: QueryTypes.SELECT }
+    );
+    return result;
   }
 }
 

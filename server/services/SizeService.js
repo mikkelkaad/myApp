@@ -4,6 +4,10 @@ class SizeService {
     this.Size = db.Size;
   }
 
+  async getAll() {
+    return this.Size.findAll({});
+  }
+
   async create(size) {
     return this.Size.create({
       size: size,

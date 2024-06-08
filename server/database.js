@@ -18,8 +18,9 @@ const path = require("path");
 const rawData = JSON.parse(
   fs.readFileSync(path.resolve(__dirname + "/rawdata/JSONdata.json"))
 );
-const { roles, sizes, species, allergies, breeds } = rawData;
+const { roles, sizes, species, allergies, breeds, food } = rawData;
 const { dogs } = breeds;
+const { brands, foods } = food;
 
 (async () => {
   await db.sequelize.sync({ force: false });
@@ -57,6 +58,25 @@ const { dogs } = breeds;
 
     for (i = 0; i < allergies.length; i++) {
       await allergySerivce.create(allergies[i]);
+    }
+
+    for (i = 0; i < brands.length; i++) {
+      await brandSerivce.create(brands[i]);
+    }
+
+    for (i = 0; i < foods.length; i++) {
+      await foodSerivce.create(
+        foods[i].name,
+        foods[i].size,
+        foods[i].energy,
+        foods[i].protein,
+        foods[i].fat,
+        foods[i].fibers,
+        foods[i].ash,
+        foods[i].calcium,
+        foods[i].phosphate,
+        foods[i].BrandId
+      );
     }
   } catch (err) {
     console.log(err);

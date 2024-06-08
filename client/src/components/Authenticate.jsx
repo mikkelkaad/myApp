@@ -76,8 +76,8 @@ export const Authenticate = ()=> {
           <br />
           <input id="inputPassword" name="password" placeholder="password..."></input>
           <br />
-          <button type="submit" onClick={signup}>Signup</button>
-          <button type="submit" onClick={login}>login</button>
+          <button type="submit" onClick={signup}>SIGNUP</button>
+          <button type="submit" onClick={login}>LOGIN</button>
         
     </div>
     </>

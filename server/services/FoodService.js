@@ -1,3 +1,5 @@
+const { QueryTypes } = require("sequelize");
+
 class FoodService {
   constructor(db) {
     this.client = db.sequelize;
@@ -36,6 +38,25 @@ class FoodService {
       FoodId: FoodId,
       IngredientId: IngredientId,
     });
+  }
+
+  async findFood(searchParams) {
+    const result = this.client.query(
+      `
+      SELECT name, size
+      FROM food
+      WHERE
+      energy >= ${searchParams.energy.min} AND energy <= ${searchParams.energy.max} AND
+      protein >= ${searchParams.protein.min} AND protein <= ${searchParams.protein.max} AND
+      fat >= ${searchParams.fat.min} AND fat <= ${searchParams.fat.max} AND
+      fibers >= ${searchParams.fibers.min} AND fibers <= ${searchParams.fibers.max} AND
+      ash >= ${searchParams.ash.min} AND ash <= ${searchParams.ash.max} AND
+      calcium >= ${searchParams.calcium.min} AND calcium <= ${searchParams.calcium.max} AND
+      phosphate >= ${searchParams.phosphate.min} AND phosphate <= ${searchParams.phosphate.max}
+      `,
+      { type: QueryTypes.SELECT, raw: true }
+    );
+    return result;
   }
 }
 

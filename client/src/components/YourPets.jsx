@@ -1,5 +1,5 @@
 import { getJson } from "./getJson"
-const pets = await getJson("http://localhost:8080/pets/");
+const pets = await getJson("http://localhost:8080/pets");
 const yourPets = pets?.data?.result || [];
 
 const findFood = async ()=>{
@@ -29,18 +29,17 @@ export const YourPets = (props)=>{
     return (
     <>    
         <h1><code>Your pets</code></h1>
-        <table className="dataTable">
+        <table className="petTable">
             <tbody>
 
         {yourPets ? yourPets.map((pet, i) => (
             <tr  key={i}>
-            <td>
-                    {Object.keys(pet).map(key => <p key={key+pet+pet[key]}>{key} : {pet[key]}</p>)}
-                <button onClick={()=>{findFood()}}>FIND SUITABLE FOOD</button>
+                <td>
+                    {Object.keys(pet).map(key =>
+                        <p className="petProps" key={key+pet+pet[key]}>{key}<span className="rightText">{pet[key]}{key === "weight" ? "kg" : ""}</span></p>)}
+                    <button onClick={()=>{findFood()}}>FIND SUITABLE FOOD</button>
                 </td>
-            </tr>
-            
-           
+            </tr> 
             )): <p>Failed to load pets</p>}
             </tbody>
             </table>

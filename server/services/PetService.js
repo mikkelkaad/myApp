@@ -31,10 +31,9 @@ class PetService {
   async getMyPets(userId) {
     const result = this.client.query(
       `
-      SELECT name, weight, breeds.breed, species.species
+      SELECT name, weight, breeds.breed
       FROM pets
       JOIN breeds ON pets.BreedId = breeds.id
-      JOIN species ON breeds.SpeciesId = species.id
       WHERE UserId = ${userId}
       `,
       { raw: true, type: QueryTypes.SELECT }

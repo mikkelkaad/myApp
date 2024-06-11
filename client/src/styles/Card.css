@@ -2,12 +2,10 @@
     height: 200px;
     width: 200px;
     border-radius: 10px;
-    border: black 1px solid;
     margin: 5px;
     filter: grayscale(70%);
     object-fit: cover;
     overflow: hidden;
-
     transition: all 0.5s linear;
 }
 

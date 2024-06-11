@@ -3,7 +3,6 @@ import {Card} from "./Card";
 import placeholder from "./placeholder.png";
 import Swal from "sweetalert2";
 
-
 const validateInput = (name,weight,birthday)=>{
     let isValid = true;
     if(name === "") isValid = false;
@@ -12,16 +11,18 @@ const validateInput = (name,weight,birthday)=>{
     return isValid;
 }
 
-
 const breedPicker = async (props,i)=>{
     props.pet.breed = props.breeds[i].breed;
     Swal.fire({
         title:"We just need a bit more info about your pet:",
-        background:"#ff7f50",
+        background:"#FFF",
         color:"#000",
         html:`
+        <p>Name</p>
         <input placeholder="Name" id="petName"  />
+        <p>Weight in kilograms</p>
         <input placeholder="Weight"id="petWeight" />
+        <p>Date of birth: dd/mm/yyyy</p>
         <input placeholder="Birthday" id="petBirthday" type="date"  />
         `,
         preConfirm:async()=>{
@@ -36,9 +37,6 @@ const breedPicker = async (props,i)=>{
         props.pet.name = document.getElementById('petName').value;
         props.pet.weight = document.getElementById('petWeight').value;
         props.pet.birthday = document.getElementById('petBirthday').value;
-        
-        
-        console.log(props.pet);
 
         const request =  await fetch('http://localhost:8080/pets',
         {method:"POST",
@@ -65,10 +63,6 @@ const breedPicker = async (props,i)=>{
 
 export const BreedsModal = (props)=>{
     let list = props.breeds;
-    // for(let i=0;i<props.breeds.length;i++){
-    //     list.push(<><Card cardUrl={placeholder} cardAlt={props.breeds[i].breed} func={()=>{breedPicker(props,i)}} /></>);
-    // }
-
     return(
         <div id ={props.modalId} className="modal">
             {    list.map((breed,i)=>{
@@ -80,11 +74,9 @@ export const BreedsModal = (props)=>{
     )
 }
 
-BreedsModal.show = (modalId)=>{
-    
+BreedsModal.show = (modalId)=>{  
     const modal = document.querySelector(modalId);
     modal.style.display = modal.style.display === "block" ? "none" : "block";
-
     window.onkeydown = (event)=>{
         if(event.keyCode === 27){
             modal.style.display = "none";

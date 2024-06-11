@@ -40,6 +40,18 @@ class FoodService {
     });
   }
 
+  async getAll() {
+    const result = this.client.query(
+      `
+      SELECT name, size, energy, protein, fat, fibers, ash, calcium, phosphate, brands.brand
+      FROM food
+      JOIN brands ON food.BrandId = brands.id
+      `,
+      { type: QueryTypes.SELECT, raw: true }
+    );
+    return result;
+  }
+
   async findFood(searchParams) {
     const result = this.client.query(
       `

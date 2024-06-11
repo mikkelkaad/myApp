@@ -15,6 +15,7 @@ const petsRouter = require("./routes/pets");
 const speciesRouter = require("./routes/species");
 const sizesRouter = require("./routes/sizes");
 const findfoodRouter = require("./routes/findfood");
+const foodRouter = require("./routes/food");
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use("/pets", petsRouter);
 app.use("/sizes", sizesRouter);
 app.use("/species", speciesRouter);
 app.use("/findfood", findfoodRouter);
+app.use("/food", foodRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

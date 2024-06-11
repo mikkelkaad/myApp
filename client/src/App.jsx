@@ -6,6 +6,7 @@ import {MyPagePage} from './pages/MyPage';
 import { HomePage } from './pages/Home';
 import { AnimalsPage } from './pages/Animals';
 import {AdminPage} from "./pages/Admin";
+import { PetFoodPage } from './pages/PetFood';
 
 
 const raw = await getJson('http://localhost:8080/user');
@@ -21,6 +22,7 @@ return(
       <Route path='/mypage' element={<MyPagePage  user={user} />}/>
       <Route path='/animals' element={<AnimalsPage user={user} />}/>
       <Route path='/admin' element={<AdminPage user={user} />}/>
+      <Route path='/food' element={<PetFoodPage user={user} />}/>
       
     </Routes>
 

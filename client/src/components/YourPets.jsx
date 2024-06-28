@@ -36,8 +36,10 @@ export const YourPets = (props)=>{
             <tr  key={i}>
                 <td>
                     {Object.keys(pet).map(key =>
-                        <p className="petProps" key={key+pet+pet[key]}>{key}<span className="rightText">{pet[key]}{key === "weight" ? "kg" : ""}</span></p>)}
-                    <button onClick={()=>{findFood()}}>FIND SUITABLE FOOD</button>
+                        <p className="petProps" key={key+pet+pet[key]}>
+                            {pet[key]}{key === "weight" ? "kg" : ""}
+                            </p>)}
+                   <button onClick={()=>{findFood()}}>FIND SUITABLE FOOD</button>
                 </td>
             </tr> 
             )): <p>Failed to load pets</p>}

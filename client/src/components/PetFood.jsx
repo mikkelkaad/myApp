@@ -17,8 +17,8 @@ export const PetFood = (props)=>{
                 </thead>
                     <tbody>
                         {foods.map((food)=> 
-                        <tr>
-                            {Object.keys(food).map((key)=><td>{food[key]}</td>)}
+                        <tr key={"fooditem_"+food.name}>
+                            {Object.keys(food).map((key)=><td key={"fooditem_"+food[key]}>{food[key]}</td>)}
                         </tr>)}
                     </tbody>
             </table>
